@@ -15,11 +15,15 @@ function getTranslationUrl(text) {
 function clickHandler() {
 
     let textinput = inputText.value;
-    outputText.innerText = "this is the translated text";
-    fetch(getTranslationUrl(textinput)).then(response => {
-        console.log(response.json());
-        console.log(response);
-        console.log(response.translated.value)
+    // outputText.innerText = "this is the translated text";
+    fetch(getTranslationUrl(textinput))
+    .then(response => { console.log(response)
+    return response.json()})
+    .then(data => {
+        console.log(data.contents.translated);
+
+        TranslatedText = data.contents.translated;
+        outputText.innerHTML = TranslatedText;
     })
 }   
 
